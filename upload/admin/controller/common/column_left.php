@@ -247,7 +247,7 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			if ($this->user->hasPermission('access', 'sale/recurring')) {	
 				$sale[] = array(
-					'name'	   => $this->language->get('text_recurring'),
+					'name'	   => $this->language->get('text_order_recurring'),
 					'href'     => $this->url->link('sale/recurring', 'user_token=' . $this->session->data['user_token'], true),
 					'children' => array()		
 				);	
@@ -581,7 +581,15 @@ class ControllerCommonColumnLeft extends Controller {
 			
 			// Tools	
 			$maintenance = array();
-				
+			
+			if ($this->user->hasPermission('access', 'upgrade/upgrade')) {
+				$maintenance[] = array(
+					'name'	   => $this->language->get('text_upgrade'),
+					'href'     => $this->url->link('upgrade/upgrade', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);
+			}
+						
 			if ($this->user->hasPermission('access', 'tool/backup')) {
 				$maintenance[] = array(
 					'name'	   => $this->language->get('text_backup'),
